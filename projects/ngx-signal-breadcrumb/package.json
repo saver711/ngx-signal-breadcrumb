@@ -1,0 +1,37 @@
+{
+  "name": "ngx-signal-breadcrumb",
+  "version": "0.0.1",
+  "author": {
+    "name": "Ahmed Hassan",
+    "email": "ahwork711@gmail.com",
+    "url": "https://saver711.github.io/ahmedhasan"
+  },
+  "keywords": [
+    "angular",
+    "breadcrumb",
+    "breadcrumbs",
+    "typescript",
+    "angular-breadcrumb",
+    "ng-breadcrumb",
+    "ngx-breadcrumb",
+    "signals",
+    "signal",
+    "signals-breadcrumb",
+    "signal-breadcrumb",
+    "ng-signals-breadcrumb",
+    "ngx-signal-breadcrumb"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saver711/ngx-signal-breadcrumb"
+  },
+  "description": "non-opinionated Angular breadcrumbs service",
+  "peerDependencies": {
+    "@angular/common": "^17.0.0",
+    "@angular/core": "^17.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
