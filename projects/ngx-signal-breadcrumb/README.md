@@ -1,24 +1,134 @@
 # NgxSignalBreadcrumb
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+non-opinionated Angular breadcrumbs service
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name --project ngx-signal-breadcrumb` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-signal-breadcrumb`.
-> Note: Don't forget to add `--project ngx-signal-breadcrumb` or else it will be added to the default project in your `angular.json` file. 
+```bash
+  npm i ngx-signal-breadcrumb
+  # or
+  yarn add ngx-signal-breadcrumb
+```
 
-## Build
+## Usage/Examples (Inside components)
 
-Run `ng build ngx-signal-breadcrumb` to build the project. The build artifacts will be stored in the `dist/` directory.
+### (1) With third-party packages (e.g primeng)
 
-## Publishing
+#### TS
 
-After building your library with `ng build ngx-signal-breadcrumb`, go to the dist folder `cd dist/ngx-signal-breadcrumb` and run `npm publish`.
+```javascript
+import { Component, effect, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { NgxSignalBreadcrumbService } from 'ngx-signal-breadcrumb';
+import { MenuItem } from 'primeng/api';
 
-## Running unit tests
+@Component({
+  selector: 'ng-breadcrumb',
+  standalone: true,
+  imports: [CommonModule, BreadcrumbModule],
+  templateUrl: './breadcrumb.component.html',
+  styleUrls: ['./breadcrumb.component.scss'],
+})
+export class BreadcrumbComponent implements OnInit {
+  items: MenuItem[] = [];
+  home: MenuItem | undefined;
 
-Run `ng test ngx-signal-breadcrumb` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  constructor( private ngxSignalBreadcrumbService: NgxSignalBreadcrumbService<MenuItem>) {
+    effect(() => {
+      this.items = [...ngxSignalBreadcrumbService.breadcrumbs()];
+    });
+  }
 
-## Further help
+  ngOnInit(): void {
+    this.home = { icon: 'pi pi-home', routerLink: '/dashboard' };
+  }
+}
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+
+#### HTML
+
+```html
+<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+```
+
+---
+
+### (2) Custom (opinionated) component
+
+#### TS
+
+```javascript
+import { Component, effect } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgxSignalBreadcrumbService } from 'ngx-signal-breadcrumb';
+
+type Breadcrumb = {
+  label: string;
+  ...
+  ...
+};
+
+@Component({
+  selector: 'ng-breadcrumb',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './breadcrumb.component.html',
+  styleUrls: ['./breadcrumb.component.scss'],
+})
+export class BreadcrumbComponent {
+  breadcrumbs: Breadcrumb[] = [];
+
+  constructor(
+    private ngxSignalBreadcrumbService: NgxSignalBreadcrumbService<Breadcrumb>
+  ) {
+    effect(() => {
+      this.breadcrumbs = [...ngxSignalBreadcrumbService.breadcrumbs()];
+    });
+  }
+
+}
+
+```
+
+#### HTML
+
+```html
+<ng-container *ngIf="breadcrumbs.length">
+  <div *ngFor="let item of breadcrumbs">{{ item.label }}</div>
+</ng-container>
+```
+
+## Usage/Examples (In Routes)
+
+```javascript
+{
+    path: 'whatever',
+    component: WhateverComponent,
+    data: {
+      breadcrumbs: [
+        {
+          label: 'whatever',
+          routerLink: '/whatever',
+        },
+        {
+          label: 'New',
+          routerLink: '/whatever/new',
+        },
+      ],
+    },
+  }
+```
+
+---
+
+## Methods
+
+- updateAllBreadcrumbs(breadcrumbs: T[])
+- updateBreadCrumbAtIndex(index: number, breadcrumb: T)
+- pushBreadCrumb(breadcrumb: T)
+
+## Author
+
+[@AhmedHassan](https://www.linkedin.com/in/ahmedhassan711/)

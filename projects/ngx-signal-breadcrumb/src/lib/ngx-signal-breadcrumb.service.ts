@@ -45,7 +45,7 @@ export class NgxSignalBreadcrumbService<T> {
     this.breadcrumbs.set(breadcrumbs);
   }
 
-  updateBreadCrumbInIndex(index: number, breadcrumb: T) {
+  updateBreadCrumbAtIndex(index: number, breadcrumb: T) {
     this.breadcrumbs.update((breadcrumbs) => {
       const updatedBreadcrumbs = [...breadcrumbs];
       updatedBreadcrumbs[index] = breadcrumb;
