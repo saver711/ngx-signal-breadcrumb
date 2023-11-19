@@ -126,8 +126,8 @@ export class BreadcrumbComponent {
 ## Methods
 
 - updateAllBreadcrumbs(breadcrumbs: T[])
-- updateBreadCrumbAtIndex(index: number, breadcrumb: T)
-- pushBreadCrumb(breadcrumb: T)
+- updateBreadcrumbAtIndex(index: number, breadcrumb: T)
+- pushBreadcrumb(breadcrumb: T)
 
 ## Author
 
