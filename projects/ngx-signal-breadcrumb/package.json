@@ -1,6 +1,6 @@
 {
   "name": "ngx-signal-breadcrumb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Ahmed Hassan",
     "email": "ahwork711@gmail.com",
@@ -21,6 +21,7 @@
     "ng-signals-breadcrumb",
     "ngx-signal-breadcrumb"
   ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/saver711/ngx-signal-breadcrumb"
