@@ -34,7 +34,9 @@ export class NgxSignalBreadcrumbService<T> {
     for (const child of children) {
       child.data.subscribe((data) => {
         const breadcrumbs = data['breadcrumbs'];
-        this.breadcrumbs.set(breadcrumbs);
+        if (breadcrumbs && breadcrumbs.length) {
+          this.breadcrumbs.set(breadcrumbs);
+        }
       });
 
       this.getBreadcrumbs(child);
