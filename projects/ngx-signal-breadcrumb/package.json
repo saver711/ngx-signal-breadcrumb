@@ -1,6 +1,6 @@
 {
   "name": "ngx-signal-breadcrumb",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": {
     "name": "Ahmed Hassan",
     "email": "ahwork711@gmail.com",
@@ -28,8 +28,8 @@
   },
   "description": "non-opinionated Angular breadcrumbs service",
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0"
+    "@angular/common": "^16.2.0",
+    "@angular/core": "^16.2.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
